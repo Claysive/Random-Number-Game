@@ -9,9 +9,9 @@ def get_guess():
     guess = random.randint(1, 100)
     return guess
 
-#this is the main function. will hopefully update soon with the todo from above
+#this function allows the user to guess a number that the computer randomly generates. provides feedback to the user to determine if their number was too high or too low. 
 def player_guess():
-    comp_guess = get_guess()
+    comp_guess = get_guess() #shoud prob change this variable name
     playerGuess = 0
     guessCounter = 1
 
@@ -26,14 +26,43 @@ def player_guess():
             print(f"Congrats! Looks like you were smarter than me after all! My number was {comp_guess}")
             break
         if guessCounter > 5:
-            print(f"Better luck next time peasant! My number was {comp_guess}!")
+            print(f"Better luck next time peasant! My number was {comp_guess}!\n")
 
-#set the title of the game
+#this function allows the user to think of a number and have the computer guess it. the user must provide feedback to tell the computer if it's guess was too high or too low or correct. still need to add some exception handling, but currently functions as intended
+def player_number():
+    high = 50
+    low = 1
+    feedback = ''
+    comp_guess_count = 1
+
+    print(f"This time, let's try something different. You'll think of a number between {low} and {high} and I'll guess it\nwithin 5 tries, or you win. You'll just have to provide some feedback to help me along.\n(H) will be for a guess that's too high, (L) will be for a guess that's too low, and (C) will be for a correct guess!\n")
+
+    #TODO: add an on_ready function to start the loop, currently, once the funtion is called, the welcome message shows and instanly continues on with a guess. gives the user no time to actually think of a number. silly, but could be usefull
+
+    comp_num = random.randint(low,high)
+
+    while comp_guess_count <= 5:
+      print(f"My guess number {comp_guess_count} is {comp_num}! How did I do? Was it too(H)igh, too (L)ow or (C)orrect?")
+      feedback = input(f"Your response: ").lower()
+      
+      if feedback == 'h':
+        high = comp_num -1
+      elif feedback == 'l':
+        low = comp_num + 1
+      else:
+        print(f"I knew I was smarter than you!")
+        break
+      
+      comp_num = random.randint(low,high)
+      comp_guess_count = comp_guess_count + 1
+
+#set the welcome message of the game, named title, can possibly adjust
 title = f"Welcome to the number guessing game! You'll have 5 trys to guess my number.\n" \
-f"Are you smarter than me? Let's find out! The number is between 1 and 100. Good Luck!"
+f"Are you smarter than me? Let's find out! The number is between 1 and 100. Good Luck!\n"
 
 #print the title of the game
 print(title)
 
 #run the main function of the game
 player_guess()
+player_number()
