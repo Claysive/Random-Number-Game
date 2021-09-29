@@ -1,6 +1,6 @@
 #author: Claysive
 #description: just a simple random number guessing game
-#TODO: update to include a user number and have the computer guess it. should include an option of which game to play
+#TODO: update to include a user number and have the computer guess it. should include an option of which game to play - first half done
 
 import random #imports the random module to generate a random number using 'randint'
 
@@ -37,7 +37,7 @@ def player_number():
 
     print(f"This time, let's try something different. You'll think of a number between {low} and {high} and I'll guess it\nwithin 5 tries, or you win. You'll just have to provide some feedback to help me along.\n(H) will be for a guess that's too high, (L) will be for a guess that's too low, and (C) will be for a correct guess!\n")
 
-    #TODO: add an on_ready function to start the loop, currently, once the funtion is called, the welcome message shows and instanly continues on with a guess. gives the user no time to actually think of a number. silly, but could be usefull
+    #TODO: add an on_ready function to start the loop, currently, once the funtion is called, the welcome message shows and instanly continues on with a guess. gives the user no time to actually think of a number. silly, but could be usefull. add a message to be displayed once the computer loses, may also increase the number of guesses for the computer
 
     comp_num = random.randint(low,high)
 
@@ -56,13 +56,13 @@ def player_number():
       comp_num = random.randint(low,high)
       comp_guess_count = comp_guess_count + 1
 
-#set the welcome message of the game, named title, can possibly adjust
+#set the welcome message of the game, named title, can possibly that name since you know, its not really the title of the game :) 
 title = f"Welcome to the number guessing game! You'll have 5 trys to guess my number.\n" \
 f"Are you smarter than me? Let's find out! The number is between 1 and 100. Good Luck!\n"
 
-#print the title of the game
+#print the welcome message of the game
 print(title)
 
-#run the main function of the game
+#run the main functions of the game
 player_guess()
 player_number()
