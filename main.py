@@ -1,9 +1,9 @@
 #author: Claysive
 #description: just a simple random number guessing game
-#TODO: update to include a user number and have the computer guess it. should include an option of which game to play - first half done
+#TODO: update to include a user number and have the computer guess it. should include an option of which game to play - first half done, added the user number, but needs updating so the user picks a number before the computer makes first guess. 
 
 import random #imports the random module to generate a random number using 'randint'
-import pyinputplus as pyip
+import pyinputplus as pyip #imports the pyinputplus module, used for input validation
 
 #function to generate a random number btwn one and a hundred. may update it to allow the number range to be user defined
 def get_guess():
@@ -17,7 +17,7 @@ def player_guess():
     guessCounter = 1
 
     while guessCounter <= 5:
-        playerGuess = int(input(f"Enter guess number {guessCounter}: "))
+        playerGuess = pyip.inputInt(prompt=f"Enter guess number {guessCounter}: ")
         guessCounter = guessCounter + 1
         if playerGuess < comp_guess and guessCounter != 6:
             print(f"You're guess was too low, try again!")
@@ -38,13 +38,14 @@ def player_number():
 
     print(f"This time, let's try something different. You'll think of a number between {low} and {high} and I'll guess it\nwithin 8 tries, or you win. You'll just have to provide some feedback to help me along.\n(H) will be for a guess that's too high, (L) will be for a guess that's too low, and (C) will be for a correct guess!\n")
 
-    #TODO: add an on_ready function to start the loop, currently, once the funtion is called, the welcome message shows and instanly continues on with a guess. gives the user no time to actually think of a number. silly, but could be usefull. add a message to be displayed once the computer loses, may also increase the number of guesses for the computer
-
+    #TODO: add an on_ready function to start the loop, currently, once the funtion is called, the welcome message shows and instanly continues on with a guess. gives the user no time to actually think of a number. silly, but could be usefull. add a message to be displayed once the computer loses, may also increase the number of guesses for the computer - first part completed, just with a 'wait for enter keypress'
     comp_num = random.randint(low,high)
 
+    input(f'Think of a number and press Enter when ready...')
+  
     while comp_guess_count <= 8:
-      print(f"My guess number {comp_guess_count} is: {comp_num}! How did I do? Was it too(H)igh, too (L)ow or (C)orrect?")
-      feedback = input(f"Your response: ").lower()
+      print(f"My guess number {comp_guess_count} is: {comp_num}! How did I do? Was it too (H)igh, too (L)ow or (C)orrect?")
+      feedback = pyip.inputChoice(['h','l','c']).lower()
       
       if feedback == 'h':
         high = comp_num -1
@@ -52,6 +53,11 @@ def player_number():
         low = comp_num + 1
       else:
         print(f"I knew I was smarter than you!")
+        break
+        
+#checks to make sure that the range for the random function doesn't get out of whack and throw an error. prob needs a check for going to high as well, still needs a few more tests.
+      if low > high: 
+        print('Oopps, looks like you messed up somewhere, better luck next time!')
         break
       
       comp_num = random.randint(low,high)
