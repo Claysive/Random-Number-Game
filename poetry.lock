@@ -1,0 +1,37 @@
+[[package]]
+name = "pyinputplus"
+version = "0.2.12"
+description = "Provides more featureful versions of input() and raw_input()."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pysimplevalidate = ">=0.2.7"
+stdiomask = ">=0.0.3"
+
+[[package]]
+name = "pysimplevalidate"
+version = "0.2.12"
+description = "A collection of string-based validation functions, suitable for use in other Python 2 and 3 applications."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "stdiomask"
+version = "0.0.6"
+description = "A cross-platform Python module for entering passwords to a stdio terminal and displaying a **** mask, which getpass cannot do."
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "7ce69b8e1d56b181b4a87f7bb0267f5eae9a27416667b2876215834c3f3509c1"
+
+[metadata.files]
+pyinputplus = []
+pysimplevalidate = []
+stdiomask = []
